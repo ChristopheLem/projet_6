@@ -1,5 +1,12 @@
 const express = require('express');
 const app = express();
+const connectDB = require('./database/mongoose');
+const bodyParser = require('body-parser');
+
+const userRouter = require('./routers/user');
+
+connectDB();
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -8,5 +15,9 @@ app.use((req, res, next) => {
     next();
   });
 
+app.use(bodyParser.json());
+
+
+app.use('/api/auth', userRouter);
 
 module.exports = app;
