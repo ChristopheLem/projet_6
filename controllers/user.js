@@ -8,7 +8,7 @@ exports.signup = async (req, res) => {
         await user.save();
         res.status(201).send({ success: true, data: user });
     } catch (err) {
-        res.status(400).send(err);
+        res.status(400).send({error: err.message});
     }
 }
 
@@ -23,13 +23,13 @@ exports.login = async (req, res) => {
         console.log('isMatch: ' + isMatch);
 
         if (!isMatch) {
-            return res.status(400).send({ success: false, error: "Mot de passe incorrect"})
+            return res.status(400).send({ error: "Mot de passe incorrect"})
         } else {
             const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '24h'})
             console.log(token)
             res.status(200).send({ userId: user._id,  token })            
         }
     } catch (e) {
-        res.status(400).send({ success: false, error: e})
+        res.status(400).send({ error: e })
     }
 }
