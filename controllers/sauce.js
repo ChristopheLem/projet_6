@@ -63,3 +63,52 @@ exports.deleteSauce = async (req, res) => {
         res.status(500).send({ err });
     }
 }
+
+exports.likeOrDislike = async (req, res) => {
+    console.log(req.body)
+    console.log('req.body.userId: ' + req.body.userId)
+    console.log(req.body.like)
+    try {
+        const sauce = await Sauce.findById(req.params.id)
+        if (req.body.like === 1) {
+            if( !sauce.usersLiked.includes(req.body.userId)) {
+                await Sauce.updateOne({ _id: req.params.id }, {
+                        $push: {
+                            usersLiked: req.body.userId
+                        }, 
+                        $inc: { 
+                            likes: 1 }} )                    
+            } 
+        res.status(200).send(sauce)
+        } else if (req.body.like === 0) {
+            if ( sauce.usersLiked.includes(req.body.userId)) {
+                await Sauce.updateOne({ _id: req.params.id }, {
+                        $pull: {
+                            usersLiked: req.body.userId
+                        }, 
+                        $inc: { 
+                            likes: -1 }} )       
+            } else if ( sauce.usersDisliked.includes(req.body.userId)) {
+                await Sauce.updateOne({ _id: req.params.id }, {
+                        $pull: {
+                            usersDisliked: req.body.userId
+                        }, 
+                        $inc: { 
+                            dislikes: -1 }} )       
+            }
+        res.status(200).send(sauce) 
+        } else if (req.body.like === -1) {
+            if( !sauce.usersDisliked.includes(req.body.userId)) {
+                await Sauce.updateOne({ _id: req.params.id }, {
+                        $push: {
+                            usersDisliked: req.body.userId
+                        }, 
+                        $inc: { 
+                            dislikes: 1 }} )             
+            }
+        res.status(200).send(sauce)
+        }
+    } catch (err) {
+        res.status(400).send(err)
+    }
+}

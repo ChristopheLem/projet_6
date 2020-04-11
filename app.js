@@ -5,7 +5,6 @@ const path = require('path');
 dotenv.config({ path: './config/config.env' });
 
 const connectDB = require('./database/mongoose');
-const bodyParser = require('body-parser');
 
 const sauceRouter = require('./routers/sauce');
 const userRouter = require('./routers/user');
@@ -13,7 +12,7 @@ const userRouter = require('./routers/user');
 connectDB();
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
