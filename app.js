@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
+const mongoSanitize = require('express-mongo-sanitize');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
+
+app.use(mongoSanitize());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
