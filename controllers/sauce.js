@@ -65,9 +65,6 @@ exports.deleteSauce = async (req, res) => {
 }
 
 exports.likeOrDislike = async (req, res) => {
-    console.log(req.body)
-    console.log('req.body.userId: ' + req.body.userId)
-    console.log(req.body.like)
     try {
         const sauce = await Sauce.findById(req.params.id)
         if (req.body.like === 1) {
