@@ -1,8 +1,12 @@
 const http = require('http');
 const dotenv = require('dotenv');
+
+const connectDB = require('./database/mongoose');
 const app = require('./app');
 
 dotenv.config({ path: './config/config.env' });
+
+connectDB();
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
