@@ -9,7 +9,6 @@ module.exports = (req, res, next) => {
     if (req.body.userId && req.body.userId !== userId) {
      throw new Error('Non autorisé !');
     } 
-      req.userId = userId;
       next();      
   } catch (e) {
     res.status(401).send({

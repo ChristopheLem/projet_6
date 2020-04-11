@@ -30,6 +30,6 @@ exports.login = async (req, res) => {
             res.status(200).send({ userId: user._id,  token })            
         }
     } catch (e) {
-        res.status(400).send({ error: e })
+        res.status(400).send(e)
     }
 }
