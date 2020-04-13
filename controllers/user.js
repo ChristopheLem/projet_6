@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
         if (!isMatch) {
             return res.status(400).send({ error: "Mot de passe incorrect"})
         } else {
-            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '24h'})
+            const token = jwt.sign({ userId: user._id }, "SECRET", { expiresIn: '24h'})
             res.status(200).send({ userId: user._id,  token })            
         }
     } catch (e) {

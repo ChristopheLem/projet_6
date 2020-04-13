@@ -1,6 +1,5 @@
 const express = require('express');
 
-const dotenv = require('dotenv');
 const path = require('path');
 
 const cors = require('cors');
@@ -14,9 +13,6 @@ const connectDB = require('./database/mongoose');
 
 const sauceRouter = require('./routers/sauce');
 const userRouter = require('./routers/user');
-
-// Charge les variables environnement
-dotenv.config({ path: './config/config.env' });
 
 // Connect à la base de donnée
 connectDB();
