@@ -85,7 +85,7 @@ exports.deleteSauce = async (req, res) => {
 exports.likeOrDislike = async (req, res) => {
     try {
         const sauce = await Sauce.findById(req.params.id)
-        if (req.body.like === 1) {
+        if (req.body.like === 1) { 
             if( !sauce.usersLiked.includes(req.body.userId)) {
                 await Sauce.updateOne({ _id: req.params.id }, {
                         $push: {
