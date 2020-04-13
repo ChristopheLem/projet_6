@@ -6,7 +6,8 @@
 ## Pour éxécuter ce projet 
 #####   1- cloner le projet
 #####   2- npm install
-#####   3- Dans le terminal, démarrer npm run dev pour avoir accès au serveur.
+#####   3- cd projet_6_backend
+#####   4- Dans le terminal, démarrer npm run dev pour avoir accès au serveur.
 #####   Rendez-vous sur http://localhost:3000/. L'application va se recharger automatiquement si vous modifiez un fichier source.
         
 ### Pour la gestion de la base de donnée
