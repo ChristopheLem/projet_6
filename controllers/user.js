@@ -2,6 +2,9 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// @desc crée un nouvel utilisateur
+// @route POST /api/auth/signup
+// @access Public
 exports.signup = async (req, res) => {
     const user = new User(req.body);
     try {
@@ -12,6 +15,9 @@ exports.signup = async (req, res) => {
     }
 }
 
+// @desc connecte utilisateur
+// @route POST /api/auth/login
+// @access Public
 exports.login = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email});
