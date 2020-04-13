@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema({
     }
 })
 
+// Script le password avant qu'il ne soit sauvegarder
 UserSchema.pre('save', async function(next) {
     const user = this;
 

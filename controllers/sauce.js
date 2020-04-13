@@ -1,7 +1,7 @@
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
 
-// @desc crée nouvelle sauce
+// @desc Crée nouvelle sauce
 // @route POST /api/sauces
 // @access Privée
 exports.createSauce = async (req, res) => {
@@ -19,7 +19,7 @@ exports.createSauce = async (req, res) => {
     }
 }
 
-// @desc affiche toutes les sauces
+// @desc Récupère toutes les sauces
 // @route GET /api/sauces
 // @access Privée
 exports.getSauces = async (req, res, next) => {
@@ -31,7 +31,7 @@ exports.getSauces = async (req, res, next) => {
     }
 }
 
-// @desc affiche une sauce
+// @desc Récupère une sauce
 // @route GET /api/sauces/:id
 // @access Privée
 exports.getSauce = async (req, res) => {
@@ -46,7 +46,7 @@ exports.getSauce = async (req, res) => {
     }
 }
 
-// @desc modifie une sauce
+// @desc Modifie une sauce
 // @route PUT /api/sauces/:id
 // @access Privée
 exports.updateSauce = async (req, res) => {
@@ -63,7 +63,7 @@ exports.updateSauce = async (req, res) => {
     }
 }
 
-// @desc supprime une sauce
+// @desc Supprime une sauce
 // @route DELETE /api/sauces/:id
 // @access Privée
 exports.deleteSauce = async (req, res) => {
