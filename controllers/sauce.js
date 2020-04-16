@@ -15,7 +15,7 @@ exports.createSauce = async (req, res) => {
         await sauce.save();
         res.status(201).send({ message: "Objet créé !" })
     } catch (e) {
-        res.status(400).send(e)
+        res.status(500).send(e)
     }
 }
 
@@ -40,9 +40,9 @@ exports.getSauce = async (req, res) => {
         if (!sauce) {
             return res.status(404).send({ error: "Objet non trouvée"})
         }
-        res.status(200).json(sauce)
+        res.status(200).send(sauce)
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send(e)
     }
 }
 
@@ -59,7 +59,7 @@ exports.updateSauce = async (req, res) => {
         await Sauce.findOneAndUpdate({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
         res.status(200).send({ message: 'Objet modifié !'})        
     } catch(err) {
-        res.status(400).send(err);   
+        res.status(500).send(err);   
     }
 }
 
@@ -124,6 +124,6 @@ exports.likeOrDislike = async (req, res) => {
         res.status(200).send(sauce)
         }
     } catch (err) {
-        res.status(400).send(err)
+        res.status(500).send(err)
     }
 }
